@@ -3,8 +3,6 @@ layout: post
 title: “查找算法(4)”
 author: LJC
 tags:
-- jekyll theme
-- jekyll
 - Java
 date: 2022-09-22 11:35 +0800
 ---
