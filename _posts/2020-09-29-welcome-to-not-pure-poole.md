@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "第一篇BLOG"
+title: "BLOG装修指南，汉化中"
 date: 2022-09-21 23:44 +0800
 last_modified_at: 2020-10-01 01:08:25 +0800
 tags: [jekyll theme, jekyll, tutorial]

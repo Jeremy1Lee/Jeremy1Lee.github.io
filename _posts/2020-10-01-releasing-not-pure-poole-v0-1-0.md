@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 如你所见，现在还是一个毛坯房
+title: “《从毛坯房到样板间》”
 author: LJC
 tags:
 - jekyll theme

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 等待装修
+title: “你来到了没有知识的荒原”
 tags: mathjax
 math: true
 date: 2022-10-02 15:32 +0800
