@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "你来到了没有知识的荒原"
-tags: "杂谈"
+tags: toturial
 math: true
 date: 2022-10-02 15:32 +0800
 ---
