@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "《从毛坯房到样板间》"
+title: "从毛坯房到样板间"
 author: LJC
 tags:
 - toturial
-date: 2022-10-01 13:56 +0800
+date: 2021-10-01 13:56 +0800
 ---
 The Jekyll theme **Not Pure Poole** v0.1.0 was released!
 
