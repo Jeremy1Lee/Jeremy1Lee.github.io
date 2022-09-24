@@ -4,8 +4,7 @@ title: "你来到了没有知识的荒原"
 author: LJC
 tags: 
 - toturial
-math: true
-date: 2022-10-02 15:32 +0800
+date: 2021-10-02 15:32 +0800
 ---
 Not Pure Poole supports [MathJax](https://www.mathjax.org/). You can enable it on a page by setting `math: true` in the front matter.
 

@@ -1,11 +1,14 @@
 ---
 layout: post
-title: "查找算法(4)"
+title: "四种查找算法"
 author: LJC
 tags:
 - Java
 date: 2022-09-22 11:35 +0800
 ---
+
+分别是顺序查找、二分查找、插值查找和斐波那契查找。
+{: .message }
 
 ## 顺序查找
 
