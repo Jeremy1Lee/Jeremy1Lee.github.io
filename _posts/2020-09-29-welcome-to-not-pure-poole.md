@@ -115,6 +115,12 @@ Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo r
 
 Quisque consequat sapien eget quam rhoncus, sit amet laoreet diam tempus. Aliquam aliquam metus erat, a pulvinar turpis suscipit at.
 
+
+| ![image02.jpg](/images/image02.png) | 
+|:--:| 
+| *图片1，纯表格方法* |
+
+
 ![placeholder](http://placehold.it/800x400 "Large example image")
 ![placeholder](http://placehold.it/400x200 "Medium example image")
 ![placeholder](http://placehold.it/200x200 "Small example image")
