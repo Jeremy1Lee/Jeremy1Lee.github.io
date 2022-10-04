@@ -69,9 +69,10 @@ toc: true
 
 ![bst02.png](/images/bst02.png "BST"){: .align-center}
 
-- 1) 删除**叶子节点**（蓝）
+- （一）删除**叶子节点**（蓝）
 
-&emsp;&emsp;删除思路：
+删除思路：
+
 1）先去找到需要删除的节点 targetNode
 
 2）找到 targetNode 的父节点 parentNode 
@@ -84,9 +85,9 @@ toc: true
 
 &emsp;&emsp;右子节点： parentNode.right = null;
 
-- 2) 删除**只有一颗子树的节点**（黄）
+- （二）删除**只有一颗子树的节点**（黄）
 
-&emsp;&emsp;删除思路：
+删除思路：
 
 1）先去找到需要删除的节点 targetNode
 
@@ -104,9 +105,9 @@ toc: true
 
 &emsp;&emsp; 3.4：targetNode 是 parentNode 的**右**孩子，且 targetNode 的孩子是**右**孩子：parentNode.right = targetNode.right
 
-- 3) 删除**有两颗子树的节点**（红）
+- （三）删除**有两颗子树的节点**（红）
 
-&emsp;&emsp;删除思路：
+删除思路：
 
 1）先去找到需要删除的节点 targetNode
 
