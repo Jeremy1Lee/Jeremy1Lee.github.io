@@ -25,7 +25,7 @@ toc: true
 &emsp;&emsp;如图，检索效率类似于二分查找，在添加 2 节点时，找到添加位置后，添加也类似链表的挂载，删除速度也很快。
 ![bst01.png](/images/bst01.png "BST"){: .align-center}
 
-## BST相关代码
+## 相关代码
 
 ### 建立 BST ，重载是个好东西
 
@@ -123,7 +123,7 @@ toc: true
 
 ![chart06.png](/images/chart06.png "flowchart-BSTdel"){: .align-center}
 
-&emsp;&emsp;有了上述非根节点删除的基础思想后，我们考虑加入删除根节点的情况，最后如上图所示，首先从根节点开始找待删节点，并判断待删节点的类型：如果删除的非根节点，则还有三种情况：上面的删除思路里详细介绍了这三种删除情况。但如果待删节点是根节点，则同样有三种情况，对应树的形状如左侧黄/红色所示，蓝色为删除根节点条件下寻找继承的新根的方法，代码如下：
+&emsp;&emsp;有了上述非根节点删除的基础思想后，我们考虑加入删除根节点的情况，最后如上图所示，首先从根节点开始找待删节点，并判断待删节点的类型：若删除非根节点，上面详细介绍了三种删除非根节点的情况。如果删除根节点，则同样有三种情况，对应树的形状如图中左侧所示，特别的，蓝色为删除根节点条件下寻找继承的新根的方法，代码如下：
 
 {% highlight js %}
 public Node searchSubRoot() {
@@ -152,7 +152,7 @@ public Node searchSubRoot() {
     }
 {% endhighlight %}
 
-&emsp;&emsp;如果是图中 2.1 ，直接删成空树即可，如果是图中 2.3 ，思路是先找到新根并持有，删除新根，新根的值覆盖旧根。值得一提的是 2.2 删除代码，如下所示：注意 rootFlag 是在 root 里的；只有在2.2场景下才会涉及到rootFlag，因此判断并新旧root删除，具体删除图示如蓝色。
+&emsp;&emsp;如果是图中 2.1 ，直接删成空树即可，如果是图中 2.3 ，则先找到新根节点并持有它，删除新根节点，刚刚持有的新根节点的值覆盖旧根即可。值得一提的是 2.2 场景的删除代码，如下所示：注意 rootFlag 是在 root 里的；只有在 2.2 场景下才会涉及到rootFlag，由此作出对 2.2 场景下**单边树**的删除操作，操作图示如上图右侧蓝色所示。
 
 {% highlight js %}
 // 2.2 只有根的一边有子树，图示见蓝色
@@ -172,26 +172,26 @@ public Node searchSubRoot() {
 
 ## 总结
 
-这部分代码的体会：
+对二叉排序**树增，删，改，查**代码的体会：
 
-1） 注意下面的<mark> return </mark>：
+1） 注意下面的 **return语句**：如果不**return**，而是直接 this.left.searchParentNode(value) ，会怎么样？
 
 {% highlight js %}
 public Node searchParentNode(int value) {
-        // 先写 this.left != null 防止nullpointer
+        // 先写 this.left != null 防止nullpointerE
         if ((this.left != null && this.left.value == value) || (this.right != null && this.right.value == value)) {
             return this;
         }
         if (value < this.value && this.left != null) {
-            // 这里一定要return！！！！不然永远都会执行到 下面的return null，怎么都是null！
+            // 这里一定要return！！！！不然永远都只会执行到 下面的return null，怎么都是返回null！导致异常！
             return this.left.searchParentNode(value);
         }
         if (value >= this.value && this.right != null) {
-            // BST 要尽量避免相同值，根据add()，≥都放在右了，所以这里也去右边找；
             return this.right.searchParentNode(value);
+            // 如果不写 return 会怎么样？
         }
         return null;
     }
 {% endhighlight %}
 
-2）类中**成员 Boolean 变量**的设置，方便条件判断，见上面的<mark> rootFlag </mark>。
+2）活用类中**成员 Boolean 变量**，方便条件判断，见上面的 **rootFlag** 。
