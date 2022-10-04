@@ -35,6 +35,7 @@ toc: true
 2. 左右现在有无节点？
 
 &emsp;&emsp;2.1 无节点，直接挂上
+
 &emsp;&emsp;2.2 有节点，继续以这个节点作为根寻找其左右（递归）
 
 {% highlight js %}
@@ -72,34 +73,51 @@ toc: true
 
 &emsp;&emsp;删除思路：
 1）先去找到需要删除的节点 targetNode
+
 2）找到 targetNode 的父节点 parentNode 
+
 3）确定 targetNode 是 parentNode 的左子节点还是右子节点以确定删除
+
 4）根据前面的情况对应删除：
+
 &emsp;&emsp;左子节点： parentNode.left  = null;
+
 &emsp;&emsp;右子节点： parentNode.right = null;
 
 - 2) 删除**只有一颗子树的节点**（黄）
 
 &emsp;&emsp;删除思路：
+
 1）先去找到需要删除的节点 targetNode
+
 2）找到 targetNode 的父节点 parentNode 
+
 3）确定：【1】 targetNode 的子节点是左子还是右子，以及【2】 targetNode 是 parentNode 的左子还是右子。出现四种情况：判断，并对应挂载即可
 
 ![BSTdel01.png](/images/BSTdel01.png "BST-delete-situation2"){: .align-center}
 
 &emsp;&emsp; 3.1：targetNode 是 parentNode 的**左**孩子，且 targetNode 的孩子是**左**孩子：parentNode.left = targetNode.left
+
 &emsp;&emsp; 3.2：targetNode 是 parentNode 的**左**孩子，且 targetNode 的孩子是**右**孩子：parentNode.left = targetNode.right
+
 &emsp;&emsp; 3.3：targetNode 是 parentNode 的**右**孩子，且 targetNode 的孩子是**左**孩子：parentNode.right = targetNode.left
+
 &emsp;&emsp; 3.4：targetNode 是 parentNode 的**右**孩子，且 targetNode 的孩子是**右**孩子：parentNode.right = targetNode.right
 
 - 3) 删除**有两颗子树的节点**（红）
 
 &emsp;&emsp;删除思路：
+
 1）先去找到需要删除的节点 targetNode
+
 2）找到 targetNode 的父节点 parentNode **（但有可能没有父节点，即根节点就没有父节点）**
+
 3）找到 targetNode 的最小子树（左子树）
+
 4）用一个临时变量 temp 将这个最小值节点保存
+
 5）删除该最小值节点
+
 6）把 temp 赋给 target
 
 ![bstdel02.png](/images/bstdel02.png "BST-delete-all-situation"){: .align-center}
