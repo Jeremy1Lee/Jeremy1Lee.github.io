@@ -172,7 +172,11 @@ public Node searchSubRoot() {
 
 ## 总结
 
-对二叉排序**树增，删，改，查**代码的体会：
+高效的数据增，删，改，查
+
+
+
+二叉排序树**增，删，改，查**代码的体会：
 
 1） 注意下面的 **return语句**：如果不**return**，而是直接 this.left.searchParentNode(value) ，会怎么样？
 
@@ -195,3 +199,5 @@ public Node searchParentNode(int value) {
 {% endhighlight %}
 
 2）活用类中**成员 Boolean 变量**，方便条件判断，见上面的 **rootFlag** 。
+
+3）一些方法中用到了多个**if**，一定程度上影响了程序的可读性和可维护性，解决办法之一是对三种情况用一个变量表征，并用不同方法处理。
