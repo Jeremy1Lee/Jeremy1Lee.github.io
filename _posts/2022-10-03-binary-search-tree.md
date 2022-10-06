@@ -4,6 +4,7 @@ title: "二叉排序/搜索树(BST)"
 author: LJC
 tags:
 - Java
+- Tree
 date: 2022-10-02 20:00 +0800
 toc: true
 ---
@@ -247,3 +248,8 @@ public Node searchParentNode(int value) {
 
 ![doubleAvlTree.png](/images/doubleAvlTree.png "双旋转"){: .align-center}
 
+## AVL 树代码实现
+
+如果是根节点旋转呢？画图：
+
+注意，普通的前序遍历 AVL 树是不好用的，因为 AVL 树也是二叉搜索树，和普通的 BST看不出区别来
