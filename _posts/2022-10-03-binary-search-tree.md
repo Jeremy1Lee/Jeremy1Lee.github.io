@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "二叉排序/搜索树(BST)"
+title: "二叉排序/搜索树(BST)，以及自平衡树"
 author: LJC
 tags:
 - Java
@@ -9,7 +9,7 @@ date: 2022-10-02 20:00 +0800
 toc: true
 ---
 
-左子 > 自己 > 右子 的树；
+左子 > 自己 > 右子 的树；以及如何防止树长得像链表
 {: .message }
 
 ## 背景
