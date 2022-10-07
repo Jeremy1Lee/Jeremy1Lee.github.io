@@ -171,7 +171,7 @@ public Node searchSubRoot() {
         }
 {% endhighlight %}
 
-## 总结
+## 二叉排序树 BST 总结
 
 高效的数据增，删，改，查
 
@@ -214,13 +214,13 @@ public Node searchParentNode(int value) {
 
 &emsp;&emsp;平衡二叉树又叫平衡二叉搜素树(Self-balancing binary search tree)，又称 AVL 树，可以**保证查询效率较高**。其特点为：1）是一颗空树/或者**左右两个子树层数差的绝对值不超过1**，2）左右子树都是平衡二叉树。平衡二叉树的实现方法有红黑树，AVL 算法，替罪羊树， Treap ，伸展树等。**注意前提：首先必须是二叉排序树 BST ，然后再看左右子树判断是否为 AVL 树**。搜索、添加、删除的时间复杂度是O(logn)。
 
-### 单旋转：左旋与右旋
+### 平衡的方法：旋转（左旋与右旋）
 
 &emsp;&emsp; AVL 树中的每个节点都有一个平衡因子（Balance Factor），即左右子树高度之差。在添加节点后，树中一些节点会失衡，要对这棵 AVL 树进行调整，但进行的调整也不能太大动干戈，尝试用尽量的调整使树回到平衡状态，否则就失去了降低复杂度的初衷。在 AVL 树中，采用**左旋**或者**右旋**的操作对失衡的节点进行调整。思路是：由于失衡的一系列节点只能可能是插入节点的祖父节点或祖祖…父节点，我们从插入节点出发，一路向上找到**第一个失衡**的祖先节点，然后对以该节点为根节点的二叉树进行**一次左旋或者一次右旋或者双旋转**调整，将其调整为平衡状态，并将高度恢复至与原来相同，那么该节点已恢复平衡，且更上层的祖先节点由于其高度与原来一致，于是也恢复到了平衡状态。
 
 ![avlLeftB01.png](/images/avlLeftB01.png "AVL左旋转"){: .align-center}
 
-例如，一个数列 4,3,6,5,7,8 ，以其对应的二叉搜索树，创建出它对应的平衡二叉树，左旋的过程如上图所示：
+例如，一个数列 4,3,6,5,7,8 ，以其对应的二叉搜索树，创建出它对应的平衡二叉树，左旋的过程如上图所示。右旋的过程与左旋反着写就可以。
 
 &emsp;&emsp;更一般性的左右旋过程对比，以及旋转调整前后的树形状，节点位置对比，以及旋转操作的原理如下图所示，由图可以得出结论：
 
@@ -229,7 +229,7 @@ public Node searchParentNode(int value) {
 - **右旋可以使开始节点的左子树高度 -1 ，右子树高度 +1** ；
 
 ![avlLeftB02.png](/images/avlLeftB02.png "详细的左右旋"){: .align-center}
-
+ 
 &emsp;&emsp;究竟是使用左旋，还是右旋，取决于**新增节点在第一个失衡节点的 __子树 的 __子树**，也就是说有四种情况：
 
 1. 新增节点在第一个失衡节点的**左子树**的**左子树**，简称 *LL*：第一个失衡节点右旋；
@@ -248,8 +248,46 @@ public Node searchParentNode(int value) {
 
 ![doubleAvlTree.png](/images/doubleAvlTree.png "双旋转"){: .align-center}
 
-## AVL 树代码实现
+判断双旋转的条件？根据图中的树形状，首先找到第一个失衡节点，判断它应该左旋还是右旋。在旋转之前，再确认一下是否要先对子节点左右旋（最终呈现双旋），流程如图所示；
 
-如果是根节点旋转呢？画图：
+![flowChart01.png](/images/flowChart01.png "如何判断应该作哪种旋转"){: .align-center}
 
-注意，普通的前序遍历 AVL 树是不好用的，因为 AVL 树也是二叉搜索树，和普通的 BST看不出区别来
+{% highlight js %}
+        // 如果右子树的高度比左子树高度大1，失衡，左旋
+        if (getRightHeight() - getLeftHeight() > 1){
+            if (this.right != null && this.right.getLeftHeight() - this.right.getLeftHeight() > 1){
+                // 右子先右旋
+                this.right.rightRotate();
+            }
+            leftRotate();
+            return;
+            // 这里必须return ！
+        }
+        // 如果左子树的高度比右子树高度大1，失衡，右旋
+        if (getLeftHeight() - getRightHeight() > 1){
+            if (this.left != null && this.left.getRightHeight() - this.left.getLeftHeight() > 1){
+                // 左子先左旋，自己再右旋
+                this.left.leftRotate();
+            }
+            rightRotate();
+            return;
+        }
+{% endhighlight %}
+
+
+程序的两种思路：
+
+- 一是只对 root 节点及其子节点作旋转操作，这样可以在每次 add 后检查，并每次对根节点作旋转操作；
+
+- 二是每次 add 后，新节点向上寻找第一个失衡节点，由第一个失衡节点开始旋转；
+
+目前的代码，判断树高度是对 Node ，只是在 add 方法后验证根节点是否失衡，并对根节点作旋转操作。理想情况应该是第二种由下自上寻找。
+
+
+## 平衡二叉树 AVL 总结
+
+- 为什么要用平衡二叉树？因为一般的二叉搜索树可能过于倾向某一边，降低了查询效率
+
+- 注意，普通的前序遍历 AVL 树是不好用的，因为 AVL 树也是二叉搜索树，和普通的 BST 看不出区别来；
+
+- 方法写在 Node 里，还是 Tree 里？可以用重载；
