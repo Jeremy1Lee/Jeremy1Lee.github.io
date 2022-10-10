@@ -324,7 +324,7 @@ public int getRightHeight(){
 
 &emsp;&emsp;总之，<mark>红黑树在插入、删除节点等操作时，不会像平衡树那样频繁破坏规则，所以不需要频繁调整</mark>，这也是我们为什么大多数情况下使用红黑树的原因。
 
-&emsp;&emsp;Java中的 TreeMap ， JDK1.8 中的 TreeMap 均是基于红黑树结构实现的。
+&emsp;&emsp;Java中的 TreeMap , TreeSet ， JDK1.8 中的 TreeMap 均是基于红黑树结构实现的。
 
 ### 红黑树性质
 
