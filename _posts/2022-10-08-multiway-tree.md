@@ -136,4 +136,4 @@ B* 树是 B+ 树的变体，**在 B+ 树的非根和非叶子节点再增加指�
 
 多叉树致力于解决高二叉树的效率问题，属于已有的轮子，无需设计实现，但要了解原理。
 
-![flowChart02.png](/images/bflowChart02.png "总结多叉树"){: .align-center}
+![flowChart02.png](/images/flowChart02.png "总结多叉树"){: .align-center}
