@@ -3,7 +3,7 @@ layout: post
 title: "多路查找树"
 author: LJC
 tags:
-- Java
+- Data Structure
 - Tree
 date: 2022-10-07 22:00 +0800
 toc: true
