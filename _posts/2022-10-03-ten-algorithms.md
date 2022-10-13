@@ -222,8 +222,53 @@ public static void calP(int[][] path, int i, int j){
 
 ## KMP 算法
 
+字符串匹配问题：
+
+> str1 = "硅硅谷 尚硅谷你尚硅 尚硅谷你尚硅谷你尚硅你好"； str2 = "尚硅谷你尚硅你"
+
+求：str2 在 str1 中是否存在，如果存在，返回第一次出现的位置，如果没有则返回 -1。
+
+**暴力匹配法**：假设 str1 匹配到 i 位置，子串 str2 匹配到 j 位置，则：如果当前字符匹配成功（str1[i] == str2[j]），然后 i 和 j 同时往后移动，如果某次移动后失配，则 i 回溯到 移动前的后一位。实现代码如下：
+
+{% highlight js %}
+public static int violenceMatch(String motherStr, String childStr){
+        char[] mother = motherStr.toCharArray();
+        char[] child = childStr.toCharArray();
+        int motherLength = mother.length;
+        int childLength = child.length;
+        int motherCnt = 0;
+        int childCnt = 0;
+
+        while (motherCnt < motherLength) {
+            while (mother[motherCnt] == child[childCnt]){
+                motherCnt ++;
+                childCnt ++;
+                if (childCnt == childLength){
+                    return motherCnt - childLength;
+                }
+            }
+            motherCnt = motherCnt - childCnt + 1;
+            childCnt = 0;
+        }
+        return -1;
+    }
+{% endhighlight %}
+
+【为什么要回溯？】回溯相当于每次都只前进一个 char ，如果不回溯，而是继续从失败的位置开始匹配，一些出现循环的字符串就会被跳过，如图所示。暴力算法为了避免这种情况，一次只前进一个字符，每个字符为开头的情况都被考虑到了。
+
+![kmp01.png](/images/kmp01.png "KMP"){: .align-center}
+
+**KMP 算法**：KMP 是一个解决**模式串在文本串中是否出现过**，如果出现过，则返回最早出现的位置的经典算法。常用与在一个文本字符串 S 内查找一个模式串 P 的出现位置。KMP 方法利用 之前判断过的信息，通过一个 next 数组，保存模式串中前后最长公共子序列的长度，每次回溯时，通过 next 数组找到前面匹配过的位置，省去了大量的计算时间。
 
 
+
+
+图示如下：
+
+![kmp02.png](/images/kmp02.png "KMP"){: .align-center}
+
+
+![kmp03.png](/images/kmp03.png "KMP"){: .align-center}
 
 
 
