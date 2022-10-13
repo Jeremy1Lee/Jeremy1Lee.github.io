@@ -180,7 +180,7 @@ public static void hanoiTower(int num, char a, char b, char c){
 
 背包问题利用动态规划来解决。每次遍历到的**第 i 个物品**，根据**物品重量 w[i]** 和**物品价值 v[i]** 来确定是否需要将该物品放入背包中。假设当前已经放了 i 个物品在背包中，那么当前背包的容量为 j，能够放进去的容量用 v[i][j] 表示。即 v[i][j] 表示了能装入容量为 j 的背包中的最大价值，由于 w 和 v 都是变的，就是它在动态变化。
 
-下面用填表法逐步推导规律和公式：表格是一行一行填的，横向表示不同容量的包，纵向表示当前提供往里装的物品，表格表示背包总价值。第一行表示没有提供任何物品时，不管如何，价值都是0，第二行表示提供G在不同背包容量下的最大价值，以此类推。
+下面用填表法逐步推导规律和公式：表格是一行一行填的，横向表示不同容量的包，纵向表示当前提供往里装的物品，表格表示背包总价值。第一行表示没有提供任何物品时，不管如何，价值都是0，第二行表示提供G在不同背包容量下的最大价值，以此类推，这张表是所有情况的最大值。设计算法也要考虑这张表的来源：下一行是基于上一行填的，一行一行来。
 
 ![dynamic01.png](/images/dynamic01.png "动态规划-填表法"){: .align-center}
 
@@ -200,6 +200,30 @@ public static void hanoiTower(int num, char a, char b, char c){
         // 策略二体现了对上一行的依赖；
 {% endhighlight %}
 
+动态规划，相当于用空间存放了递归的结果，换取时间。代码就是建立表格的过程，首先第一列和第一行肯定全是0，其次，要么复制上一行，要么分类，这取决于新来物品的重量。增加一个打印放了什么物品的功能，建立表格的过程无非就是两种操作：一是复制上一行，另外就是新增一个+在上一行找对应的格子，根据不同建表操作设置打印操作：复制上一行就递归上一行，新增节点，就先打印新增，再递归上一行对应的格子。最后什么都没有的，也就是第一行和第一列，打印背包是空的。
+
+![flowChart04.png](/images/flowChart04.png "flowChart"){: .align-center}
+
+{% highlight js %}
+// 递归打印背包信息
+public static void calP(int[][] path, int i, int j){
+        String[] s = {"G","S","L"};
+        int[] w = {1,3,4};// 物品重量
+        if (path[i][j] == 1) {
+            calP(path,i-1,j);
+        } else if (path[i][j] == 2) {
+            System.out.print("包里放了"+s[i-1]+", ");
+            calP(path,i-1,j-w[i-1]);
+        }else {
+            System.out.print("包里没东西了");
+        }
+    }
+{% endhighlight %}
+
+## KMP 算法
+
+
+
 
 
 
@@ -210,3 +234,5 @@ public static void hanoiTower(int num, char a, char b, char c){
 {% highlight js %}
 
 {% endhighlight %}
+
+
