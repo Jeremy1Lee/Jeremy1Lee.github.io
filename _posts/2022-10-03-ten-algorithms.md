@@ -19,7 +19,7 @@ toc: true
 
 {% highlight js %}
 public static int binaSearch(int[] arr, int left, int right, int num){
-        if (left <= right) {
+        if (left <= right) {    
             // 当left>right，说明递归整个数组都没找到
             int mid=(left+right)/2; //效率太低，可以使用插值查找
             // mid =left+(right-left)*(num-arr[left])/(arr[right]-arr[left])
@@ -220,7 +220,7 @@ public static void calP(int[][] path, int i, int j){
     }
 {% endhighlight %}
 
-## KMP 算法
+## 三、KMP 算法
 
 字符串匹配问题：
 
@@ -264,7 +264,7 @@ KMP 的思想也很简单。简单来说，既然一定要回溯，能不能少�
 
 ![kmp02.png](/images/kmp02.png "KMP"){: .align-center}
 
-### 部分匹配表
+### 部分匹配表原理
 
 上面的图示缺少一个原理，就是部分匹配值和部分匹配表，这是一个普适的公式来确定回溯的长度，而不是直觉确定我们是找第一个 A 还是第一个 AB 。对于字符串 "bread" 而言，
 
@@ -278,13 +278,13 @@ KMP 的思想也很简单。简单来说，既然一定要回溯，能不能少�
 
 ![kmp03.png](/images/kmp03.png "KMP"){: .align-center}
 
-举例说明创建部分匹配表的过程：如图关键词字符串为 ABCDABD ，在母串中找关键词字符串的匹配子串时，如果只有头相匹配，部分匹配值是0。每次 j 都指向前后缀重叠部分的前缀最后一个，所以当添加新的元素（下标为 i ）时（由A变为AB）是分水岭：如果新元素 i 和 j 代表的元素相同，说明前后缀的重叠+1，因此此时部分匹配值+1，填入KMP数组。反之如果新元素 i 和 j 代表的元素不同，此时前缀要不停 -1 并查看前缀是不是和新的后缀对应上了，而 j 是前缀最后一个，即 j - 1，如果能坐稳则就是此时的部分匹配值。
+举例说明创建部分匹配表的过程：如图关键词字符串为 ABCDABD ，在母串中找关键词字符串的匹配子串时，如果只有头相匹配，部分匹配值是0。
 
 ![kmp04.png](/images/kmp04.png "KMP"){: .align-center}
 
-### KMP 代码实现 - 部分匹配表
+### 部分匹配表代码实现
 
-注意 KMP 的代码：不好理解。注意是对一个字符串，生成它不同子串长度的 int 数组，以供回溯时计算索引。母字符串中的索引将为 *motherCnt = motherCnt - childCnt + (childCnt - getKMPTable(matchStr)[childCnt-1])* 。 
+注意 KMP 的代码：不好理解。每次 j 都指向前后缀重叠部分的前缀最后一个，所以当添加新的元素（下标为 i ）时（由A变为AB）是分水岭：如果新元素 i 和 j 代表的元素相同，说明前后缀的重叠+1，因此此时部分匹配值+1，填入KMP数组。反之如果新元素 i 和 j 代表的元素不同，此时前缀要不停 -1 并查看前缀是不是和新的后缀对应上了，而 j 是前缀最后一个，即 j - 1，如果能坐稳则就是此时的部分匹配值。注意是对一个字符串，生成它不同子串长度的 int 数组，以供回溯时计算索引。母字符串中的索引将为 *motherCnt = motherCnt - childCnt + (childCnt - getKMPTable(matchStr)[childCnt-1])* 。 
 
 {% highlight js %}
 public static int[] getKMPTable(String str){
@@ -306,24 +306,25 @@ public static int[] getKMPTable(String str){
     }
 {% endhighlight %}
 
-查看一下效果：
+除了在暴力匹配代码的基础上改回溯公式，教程的KMP算法应用代码如下：问题在于，加入了第i个字符，突然不匹配了，怎么回溯？这段代码的方法是i不变，让j减少（重新计数），如果新增的i和前面已匹配的字符串有所重复（匹配表中有体现），j不会回到0，而是变成kmp，继续试图匹配。如果新增的（i指向）和前面已匹配的字符串没有重复，j会=0，重新寻找头，最终直到 j = length，说明匹配完全。总之，这是一个**调整 j ，而非 i 的过程**。
 
 {% highlight js %}
-String str1 = "BBC ABCDAB ABCDABCDABDE";
-String str2 = "ABCDABD";
-
-testKMP1 = [0, 0, 0, 0, 1, 2, 0]
-violent result = 15
-   -当前匹配串 ：ABCDAB
-   ---暴力匹配回溯索引：3
-   ---KMP算法回溯索引：8
-   -当前匹配串 ：AB
-   ---暴力匹配回溯索引：9
-   ---KMP算法回溯索引：10
-   -当前匹配串 ：ABCDAB
-   ---暴力匹配回溯索引：10
-   ---KMP算法回溯索引：15
-KMP result = 15
+public static int kmpSearch_teacher(String str1, String str2, int[] kmp){
+        for (int i = 0, j = 0;i<str1.length();i++){
+            while ( j > 0 && str1.charAt(i) != str2.charAt(j)){
+                j = kmp[j-1];
+            }
+            if (str1.charAt(i) == str2.charAt(j)){
+                j++;
+            }
+            if (j == str2.length()){
+                return i-j+1;
+            }
+        }
+        return -1;
+    }
 {% endhighlight %}
 
+建表和应用的过程都是**由 i （指向新增元素）和 j （指向前后缀公共部分的最后一个元素）**展开的。建表是赋值，而应用则是在表的指导下更新 j 。在 i 和 j 指向字符不等的情况下一定要让 j 自己循环更替到和 i 相等的值/或者0，即 **j = kmp[j-1]** 。保留节目，流程图如下：
 
+![flowChart05.png](/images/flowChart05.png "flowChart"){: .align-center}
