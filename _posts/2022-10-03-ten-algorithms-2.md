@@ -99,7 +99,9 @@ vertexVisited[startVertex] = 1;
 
 因此，接下来，虽然 边 <C, E> (5) 权值最小，但 C 和 E 的终点都是 F，即它们的终点相同，因此，将 <C, E> 加入最小生成树的话，会形成回路，C和F，C和D同理。这就是判断回路的方式。也就是说，**待加入边的两个顶点不能都指向同一个终点**，否则将构成回路。
 
-这部分是代码的核心：写一个方法，输入顶点 i ，返回其终点下标：如果要添加的边
+### 代码实现
+
+这部分是代码的核心：写一个方法，输入顶点 i ，返回其终点下标：
 
 ![kruskal03.png](/images/kruskal03.png "判断回路的代码实现"){: .align-center}
 
@@ -117,7 +119,7 @@ vertexVisited[startVertex] = 1;
 
 这表明 D 的终点是 F 。整个 Kruskal 算法的流程图如下：
 
-![kruskal06.png](/images/kruskal06.png "flowChart-Kruskal"){: .align-center}
+![flowChart06.png](/images/flowChart06.png "flowChart-Kruskal"){: .align-center}
 
 
 
