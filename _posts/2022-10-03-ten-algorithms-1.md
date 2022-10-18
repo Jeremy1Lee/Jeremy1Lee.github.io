@@ -202,6 +202,10 @@ public static void hanoiTower(int num, char a, char b, char c){
 
 动态规划，相当于用空间存放了递归的结果，换取时间。代码就是建立表格的过程，首先第一列和第一行肯定全是0，其次，要么复制上一行，要么分类，这取决于新来物品的重量。增加一个打印放了什么物品的功能，建立表格的过程无非就是两种操作：一是复制上一行，另外就是新增一个+在上一行找对应的格子，根据不同建表操作设置打印操作：复制上一行就递归上一行，新增节点，就先打印新增，再递归上一行对应的格子。最后什么都没有的，也就是第一行和第一列，打印背包是空的。**DP最难的是确定状态转移方程！**，剩下的填表就行了。
 
+### 流程图
+
+01 背包问题 dp 算法的流程图如下：
+
 ![flowChart04.png](/images/flowChart04.png "flowChart"){: .align-center}
 
 {% highlight js %}
@@ -325,7 +329,11 @@ public static int kmpSearch_teacher(String str1, String str2, int[] kmp){
     }
 {% endhighlight %}
 
-建表和应用的过程都是**由 i （指向新增元素）和 j （指向前后缀公共部分的最后一个元素）**展开的。建表是赋值，而应用则是在表的指导下更新 j 。在 i 和 j 指向字符不等的情况下一定要[](https://zq99299.github.io/dsalg-tutorial/dsalg-java-hsp/14/)让 j 自己循环更替到和 i 相等的值/或者0，即 **j = kmp[j-1]** 。保留节目，流程图如下：
+建表和应用的过程都是**由 i （指向新增元素）和 j （指向前后缀公共部分的最后一个元素）**展开的。建表是赋值，而应用则是在表的指导下更新 j 。在 i 和 j 指向字符不等的情况下一定要[](https://zq99299.github.io/dsalg-tutorial/dsalg-java-hsp/14/)让 j 自己循环更替到和 i 相等的值/或者0，即 **j = kmp[j-1]** 。
+
+### 流程图
+
+保留节目，流程图如下：
 
 ![flowChart05.png](/images/flowChart05.png "flowChart"){: .align-center}
 
