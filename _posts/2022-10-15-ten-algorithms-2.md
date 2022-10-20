@@ -303,11 +303,11 @@ public void floydAlgo(){
 
 最后，程序的流程图如下：
 
-![flowChart09.png](/images/hflowChart09.png "flowChart-HorseChessBoard"){: .align-center}
+![flowChart09.png](/images/flowChart09.png "flowChart-HorseChessBoard"){: .align-center}
 
 借助流程图，再说一下回溯：
 
-![flowChart10.png](/images/hflowChart10.png "flowChart-HorseChessBoard-enhanced"){: .align-center}
+![flowChart10.png](/images/flowChart10.png "flowChart-HorseChessBoard-enhanced"){: .align-center}
 
 如图，【蓝，黄，红】分别对应【左，中，右】三个棋盘。蓝色框中的节点 A 从可走集合中取出一个 B 点，判断可走后，对 B 点同样执行方法（黄色是 B 的方法体）。 B 点执行方法，从 B 的可走中取出一个 C ， C 执行方法（红色）。假设 C 的可走点集合为空了（C走到死胡同了），那么有两种情况：
 
