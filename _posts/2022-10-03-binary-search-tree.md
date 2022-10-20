@@ -3,7 +3,7 @@ layout: post
 title: "二叉排序/搜索树(BST)，平衡树，红黑树"
 author: LJC
 tags:
-- Data Structure
+- Data Structure and Algorithm
 - Tree
 date: 2022-10-02 20:00 +0800
 toc: true

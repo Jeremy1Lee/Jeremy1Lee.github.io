@@ -3,8 +3,7 @@ layout: post
 title: "常用十种算法（二）"
 author: LJC
 tags:
-- algorithm
-- java
+- Data Structure and Algorithm
 date: 2022-10-15 21:10 +0800
 toc: true
 ---
