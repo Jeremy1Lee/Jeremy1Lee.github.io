@@ -1,6 +1,5 @@
-{% include home-header.html %}
-
 <!doctype html>
+
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
   
   {% include head.html %}
@@ -29,8 +28,9 @@
       </div>
     </div>
 
+    
     <script async src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
-
+    {% include home-header.html %}
     {%- include scroll.html -%}
 
     {%- if jekyll.environment == 'production' and site.google_analytics -%}
