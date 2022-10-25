@@ -2,90 +2,52 @@
 layout: default
 ---
 
-{% include home-header.html %}
-
-<h1>{{ page.title }}</h1>
-
-{% comment %} Check the type of archive {% endcomment %}
-{%- if page.type == 'categories' -%}
-  {%- assign taxonomies = site.categories -%}
-{%- elsif page.type == 'tags' -%}
-  {%- assign taxonomies = site.tags -%}
-{%- else -%}
-  {%- assign taxonomies = none -%}
-{%- endif -%}
-
-{% comment %} Calculate the max count of taxonomies {% endcomment %}
-{%- assign max_count = 0 -%}
-{%- for taxonomy in taxonomies -%}
-  {%- if taxonomy == 'data-structure-and-algorithm' -%}
-    {%- assign posts = taxonomy[1] -%}
-    {%- if posts.size > max_count -%}
-      {%- assign max_count = posts.size -%}
+<article class="post">
+  <h1 class="post-title">{{ page.title }}</h1>
+  <div class="post-meta">
+    {%- assign date_format = site.date_format | default: "%-d %b %Y" -%}
+    <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: date_format }}</time>
+    {%- if page.last_modified_at -%}
+      <span> ~ </span>
+      {%- assign mdate = page.last_modified_at | date_to_xmlschema -%}
+      <time datetime="{{ mdate }}" itemprop="dateModified">
+        {{ mdate | date: date_format }}
+      </time>
     {%- endif -%}
-  {%- endif -%}
-{%- endfor -%}
+    {%- if page.author -%}
+      <span> • </span>
+      {% for author in page.author %}
+        <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+          {{ author }}
+        </span>
+        {%- if forloop.last == false %}, {% endif -%}
+      {% endfor %}
+    {%- endif -%}
+  </div>
 
-<div class="taxonomies-wrapper">
-  <ul class="taxonomies">
-    {%- for i in (1..max_count) reversed -%}
-      {%- for taxonomy in taxonomies -%}
-        {%- if taxonomy == "data-structure-and-algorithm" -%}
-          {%- assign taxonomy_name = taxonomy[0] -%}
-          {%- assign slugified_taxonomy_name = taxonomy_name | slugify -%}
-          {%- assign posts = taxonomy[1] -%}
-          {%- if posts.size == i -%}
-            <li>
-              {%- capture link -%}{{ page.permalink }}#{{ slugified_taxonomy_name }}{%- endcapture -%}
-              <a class="taxonomy" href="{{ link | relative_url }}">
-                <span>
-                  {%- if page.type == 'tags' -%}
-                    {{ slugified_taxonomy_name }}
-                  {%- else -%}
-                    {{ taxonomy_name }}
-                  {%- endif -%}
-                </span>
-                <span class="taxonomy-count">{{ posts.size }}</span>
-              </a>
-            </li>
-          {%- endif -%}
-        {%- endif -%}
-      {%- endfor -%}
-    {%- endfor -%}
+  {{ content }}
+
+  {% if page.tags %}
+    {% include post-tags.html %}
+  {% endif %}
+
+  {% if jekyll.environment == "production" and site.disqus and page.comments != false %}
+    {% include disqus.html %}
+  {% endif %}
+</article>
+
+{% if site.related_posts != empty %}
+<aside class="related">
+  <h2>Related posts</h2>
+  <ul class="related-posts">
+    {% for post in site.related_posts limit:3 %}
+      <li>
+        <a href="{{ post.url | relative_url }}">
+          {{ post.title }}
+          <small><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time></small>
+        </a>
+      </li>
+    {% endfor %}
   </ul>
-</div>
-
-{% comment %} Show posts by taxonomy {% endcomment %}
-{%- for i in (1..max_count) reversed -%}
-  {%- for taxonomy in taxonomies -%}
-    {%- if taxonomy == "data-structure-and-algorithm" -%}
-      {%- assign taxonomy_name = taxonomy[0] -%}
-      {%- assign slugified_taxonomy_name = taxonomy_name | slugify -%}
-      {%- assign posts = taxonomy[1] -%}
-      {%- if posts.size == i -%}
-        <h2 id="{{ slugified_taxonomy_name }}">
-          {%- if page.type == 'tags' -%}
-            {{ slugified_taxonomy_name }}
-          {%- else -%}
-            {{ taxonomy_name }}
-          {%- endif -%}
-        </h2>
-        <ul class="post-list-by-taxonomy">
-          {%- for post in posts -%}
-            <li>
-              <time datetime="{{ page.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time> &raquo; <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-            </li>
-          {%- endfor -%}
-        </ul>
-        <a href="#" onclick="backToTop()" class="back-to-top">Top &#8648;</a>
-      {%- endif -%}
-    {%- endif -%}
-  {%- endfor -%}
-{%- endfor -%}
-
-<script>
-  function backToTop() {
-    const main = document.getElementById("site-main");
-    main.scrollTop = 0;
-  }
-</script>
+</aside>
+{% endif %}
