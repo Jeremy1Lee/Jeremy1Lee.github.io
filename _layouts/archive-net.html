@@ -30,7 +30,7 @@ layout: default
   <ul class="taxonomies">
     {%- for i in (1..max_count) reversed -%}
       {%- for taxonomy in taxonomies -%}
-        {%- if taxonomy == 'data-structure-and-algorithm' -%}
+        {%- if taxonomy == "data-structure-and-algorithm" -%}
           {%- assign taxonomy_name = taxonomy[0] -%}
           {%- assign slugified_taxonomy_name = taxonomy_name | slugify -%}
           {%- assign posts = taxonomy[1] -%}
@@ -58,7 +58,7 @@ layout: default
 {% comment %} Show posts by taxonomy {% endcomment %}
 {%- for i in (1..max_count) reversed -%}
   {%- for taxonomy in taxonomies -%}
-    {%- if taxonomy == 'data-structure-and-algorithm' -%}
+    {%- if taxonomy == "data-structure-and-algorithm" -%}
       {%- assign taxonomy_name = taxonomy[0] -%}
       {%- assign slugified_taxonomy_name = taxonomy_name | slugify -%}
       {%- assign posts = taxonomy[1] -%}
