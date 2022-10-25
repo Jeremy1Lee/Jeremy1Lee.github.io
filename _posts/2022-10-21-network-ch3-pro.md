@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "计网（三）：数据链路层（纯享版）"
+title: "计网 Ch3：数据链路层（纯享版）"
 author: LJC
 tags:
 - network
