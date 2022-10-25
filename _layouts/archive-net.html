@@ -1,6 +1,8 @@
+{% include home-header.html %}
+
 <!doctype html>
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
-  {% include home-header.html %}
+  
   {% include head.html %}
 
   <body>
@@ -36,3 +38,32 @@
     {%- endif -%}
   </body>
 </html>
+
+<article class="post">
+  <h1 class="post-title">{{ page.title }}</h1>
+  <div class="post-meta">
+    {%- assign date_format = site.date_format | default: "%-d %b %Y" -%}
+    <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: date_format }}</time>
+    {%- if page.last_modified_at -%}
+      <span> ~ </span>
+      {%- assign mdate = page.last_modified_at | date_to_xmlschema -%}
+      <time datetime="{{ mdate }}" itemprop="dateModified">
+        {{ mdate | date: date_format }}
+      </time>
+    {%- endif -%}
+    {%- if page.author -%}
+      <span> • </span>
+      {% for author in page.author %}
+        <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+          {{ author }}
+        </span>
+        {%- if forloop.last == false %}, {% endif -%}
+      {% endfor %}
+    {%- endif -%}
+  </div>
+  {{ content }}
+
+  {% if jekyll.environment == "production" and site.disqus and page.comments != false %}
+    {% include disqus.html %}
+  {% endif %}
+</article>
