@@ -5,7 +5,7 @@ url: https://jeremy1lee.github.io/
 avatar: /avatar2.jpg
 paginate: 8
 permalink: pretty
-cover_image: /bg2.png
+cover_image: /bg.jpeg
 
 # Gems
 plugins:
