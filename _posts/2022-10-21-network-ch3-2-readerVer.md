@@ -1,10 +1,10 @@
 ---
-layout: post
-title: "计网 Ch3：数据链路层-2"
+layout: post-new
+title: "[Reader Version] 数据链路层-2"
 author: LJC
 tags:
 - network
-date: 2022-10-24 13:50 +0800
+date: 2022-10-27 20:50 +0800
 toc: true
 ---
 
