@@ -9,17 +9,25 @@ toc: true
 向网站中添加 items
 {: .message }
 
-# 添加到顶上的索引
+## 继承关系
 
-找到 data/archive.yml ，按格式添加其 url ，然后需要写这个 url 对应的界面（md文件），可以用现有的 layouts 等。
+![web01.png](/images/web01.png "web"){: .align-center}
 
-目前已经实现了这种方法，并为其新了新的 layouts 模板，命名为archive-net，在新模板中去掉了左侧背景，保留了顶部索引栏。
 
-# 添加到左侧的索引
+以下是目录，及左右布局的继承关系，其他布局还在研究中：
+![web02.png](/images/web02.png "web"){: .align-center}
+
+## 添加到顶上的索引
+
+找到 data/archive.yml ，按格式添加其 名称和 URL ，注意需要提前写好这个 url 对应的界面（md文件），md 可以套用现有的 layouts 。
+
+目前已经实现了这种方法，并为其写了新的 layouts 模板archive-net，在新模板中去掉了左侧背景，保留了顶部索引栏。
+
+## 添加到左侧的索引
 
 找到data/navigator.yml，其他内容和添加到顶上一致。
 
-# 更改网站的 Favicon
+## 更改网站的 Favicon
 
 1. [Favicon生成网站](https://realfavicongenerator.net/)
 2. 下载压缩包，解压到网站**根目录**下，并替换以前的favicon文件；
