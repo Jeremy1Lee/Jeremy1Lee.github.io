@@ -23,7 +23,7 @@ type: try
 **四、网络层**
 - [网络层-1](https://jeremy1lee.github.io/2022/10/27/network-ch4-1/)
 
-
+- [网络层-2](https://jeremy1lee.github.io/2022/10/29/network-ch4-2/)
 
 
 [五、运输层](https://jeremy1lee.github.io/2022/10/24/network-ch3-2/)
