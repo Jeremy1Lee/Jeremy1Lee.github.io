@@ -25,6 +25,8 @@ type: try
 
 - [数据链路层-总结](https://jeremy1lee.github.io/2022/10/22/network-ch3-pro/)
 
+- MAC 地址的格式：【AA-BB-CC-DD-EE-FF】
+
 ----------------
 **四、网络层**
 - [网络层-1](https://jeremy1lee.github.io/2022/10/27/network-ch4-1/)
@@ -33,6 +35,9 @@ type: try
 
 - [网络层-总结](https://jeremy1lee.github.io/2022/10/30/network-ch4-pro/)
 
+- IPv4 地址的格式：【a.b.c.d】
+
+ICMP：封装特殊的报文（如差错等）来帮助提高网际层IP协议的执行效率
 
 [五、运输层](https://jeremy1lee.github.io/2022/10/24/network-ch3-2/)
 
