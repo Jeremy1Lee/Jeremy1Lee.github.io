@@ -13,13 +13,19 @@ type: try
 
 [一、体系架构](https://jeremy1lee.github.io/2022/10/20/network-ch1/)
 
+-----------------------
 [二、物理层](https://jeremy1lee.github.io/2022/10/21/network-ch2/)
 
+---------------------
 **三、数据链路层**
+
 - [数据链路层-1](https://jeremy1lee.github.io/2022/10/21/network-ch3-1/)
+
 - [数据链路层-2](https://jeremy1lee.github.io/2022/10/24/network-ch3-2/)
+
 - [数据链路层-总结](https://jeremy1lee.github.io/2022/10/22/network-ch3-pro/)
 
+----------------
 **四、网络层**
 - [网络层-1](https://jeremy1lee.github.io/2022/10/27/network-ch4-1/)
 
@@ -32,8 +38,8 @@ type: try
 
 [六、应用层](https://jeremy1lee.github.io/2022/10/24/network-ch3-2/)
 
-
-# 二、重要器件索引
+-----------------
+# （二）重要器件索引
 
 ## 物理层：
 
