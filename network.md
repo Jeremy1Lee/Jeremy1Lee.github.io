@@ -43,7 +43,10 @@ ICMP：封装特殊的报文（如差错等）来帮助提高网际层IP协议�
 
 - [运输层-1](https://jeremy1lee.github.io/2022/10/31/network-ch5-1/)
 
-- [运输层-2](https://jeremy1lee.github.io/2022/10/31/network-ch5-1/)
+- [运输层-2](https://jeremy1lee.github.io/2022/11/02/network-ch5-2/)
+
+- [运输层-总结](https://jeremy1lee.github.io/2022/11/02/network-ch5-pro/)
+
 
 [六、应用层](https://jeremy1lee.github.io/2022/10/24/network-ch3-2/)
 
