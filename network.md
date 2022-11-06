@@ -90,6 +90,12 @@ ICMP：封装特殊的报文（如差错等）来帮助提高网际层IP协议�
 
 - [交换机（Switch）](https://jeremy1lee.github.io/2022/10/24/network-ch3-2/#82-%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BA%A4%E6%8D%A2%E6%9C%BA-%E5%9C%A8%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E5%B7%A5%E4%BD%9C)：隔离冲突域。
 
+- [网卡 network interface controller，NIC ](https://jeremy1lee.github.io/2022/10/24/network-ch3-2/#71-mac-%E5%9C%B0%E5%9D%80%E7%A1%AC%E4%BB%B6%E5%9C%B0%E5%9D%80-%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80) ：
+    - 网卡实现工作站与局域网传输介质之间的物理连接和电信号匹配，接收和执行工作站与服务器送来的各种控制命令，完成**物理层**的功能。 
+    - 网卡实现局域网**数据链路层**的一部分功能，包括**网络存取控制，信息帧的发送与接收，差错校验，串并代码转换**等。 
+    - 提供数据缓存能力，还能实现某些接口功能；
+
+
 ### 网络层：
 
 - [路由器（Router）](https://jeremy1lee.github.io/2022/10/24/network-ch3-2/#112-%E8%B7%AF%E7%94%B1%E5%99%A8%E5%88%86%E5%89%B2%E5%B9%BF%E6%92%AD%E5%9F%9F)：即隔离冲突域，也隔离广播域。
