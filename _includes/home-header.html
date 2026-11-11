@@ -1,13 +1,7 @@
-<div class="home-header pure-menu pure-menu-horizontal">
-  <div class="home-header-bar">
-    {% if site.data.archive %}
-    <ul class="home-header-menu pure-menu-list">
-      {% for item in site.data.archive %}
-        <li class="pure-menu-item">
-          <a href="{{ item.url | relative_url }}" class="pure-menu-link {% if page.url == item.url %}current-item{% endif %}"">{{ item.title }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-  </div>
-</div>
+{% if site.data.archive %}
+<nav class="archive" aria-label="Article archives">
+  {% for item in site.data.archive %}
+  <a href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title | escape }}</a>
+  {% endfor %}
+</nav>
+{% endif %}

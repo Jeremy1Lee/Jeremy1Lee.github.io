@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ site.lang | default: 'en' | escape }}">
+<html lang="{{ page.lang | default: site.lang | default: 'en' | escape }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,9 +13,13 @@
   <header class="top wrap">
     <a class="brand" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a>
     <nav aria-label="Main navigation">
-      <a href="{{ '/' | relative_url }}#writing">Writing</a>
-      <a href="{{ '/about/' | relative_url }}">About</a>
-      <a href="{{ '/network/' | relative_url }}">Network</a>
+      {% for item in site.data.navigation %}
+      {% if item.url == '/' %}
+      <a href="{{ item.url | relative_url }}#writing">Writing</a>
+      {% else %}
+      <a href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title | escape }}</a>
+      {% endif %}
+      {% endfor %}
     </nav>
   </header>
   <main id="main" class="wrap" tabindex="-1">

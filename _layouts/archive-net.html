@@ -6,9 +6,10 @@ layout: default
 
 <article class="post">
   <h1 class="post-title">{{ page.title }}</h1>
+  {% if page.date or page.author or page.last_modified_at %}
   <div class="post-meta">
     {%- assign date_format = site.date_format | default: "%-d %b %Y" -%}
-    <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: date_format }}</time>
+    {% if page.date %}<time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: date_format }}</time>{% endif %}
     {%- if page.last_modified_at -%}
       <span> ~ </span>
       {%- assign mdate = page.last_modified_at | date_to_xmlschema -%}
@@ -26,6 +27,7 @@ layout: default
       {% endfor %}
     {%- endif -%}
   </div>
+  {% endif %}
 
   {{ content }}
 

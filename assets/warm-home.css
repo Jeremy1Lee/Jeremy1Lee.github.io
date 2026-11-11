@@ -23,3 +23,19 @@
 .prose :is(th,td){border:1px solid var(--line);padding:.4em .7em}
 .related{border-top:1px solid var(--line);margin-top:40px;padding-top:16px}
 .related li{margin:.5em 0}
+
+/* Shared styles for standalone pages and archives. */
+.article-body .post-title,.site-page h1{text-wrap:balance}
+.site-page h1:first-of-type{margin:0 0 28px;padding:clamp(24px,5vw,52px) clamp(20px,5vw,44px);background:linear-gradient(130deg,#fff0da,#facfbb);border-radius:24px;font-size:clamp(1.9rem,5vw,3.5rem);line-height:1.18;letter-spacing:-.045em}
+.site-page .archive{margin-bottom:20px}
+.top [aria-current="page"],.archive [aria-current="page"]{color:var(--accent);font-weight:650;text-decoration:underline}
+.taxonomies{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.taxonomy,.post-tags a{display:inline-flex;align-items:center;gap:.6em;border:1px solid var(--line);border-radius:999px;padding:.25em .75em;text-decoration:none}
+.taxonomy:hover,.post-tags a:hover{background:#fff0e2;text-decoration:underline}
+.taxonomy-count,.post-list-by-taxonomy time{font-size:.85em;color:var(--muted)}
+.post-list-by-taxonomy{padding:0;list-style:none}
+.post-list-by-taxonomy li{border-top:1px solid var(--line);padding:.55rem 0}
+.back-to-top{display:inline-block;font-size:.9rem}
+.prose .align-center{text-align:center}
+.prose img.align-center{display:block;margin-inline:auto}
+.prose hr{border:0;border-top:1px solid var(--line);margin-block:2em}
