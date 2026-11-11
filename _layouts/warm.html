@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' | escape }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% seo %}
+  {% feed_meta %}
+  <link rel="stylesheet" href="{{ '/assets/warm-home.css' | relative_url }}">
+  {% include custom-head.html %}
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top wrap">
+    <a class="brand" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a>
+    <nav aria-label="Main navigation">
+      <a href="{{ '/' | relative_url }}#writing">Writing</a>
+      <a href="{{ '/about/' | relative_url }}">About</a>
+      <a href="{{ '/network/' | relative_url }}">Network</a>
+    </nav>
+  </header>
+  <main id="main" class="wrap" tabindex="-1">
+    {{ content }}
+  </main>
+  <footer class="wrap"><small>© {{ site.time | date: '%Y' }} {{ site.title | escape }}</small></footer>
+  {% if page.math %}{% include mathjax.html %}{% endif %}
+  {% if jekyll.environment == 'production' and site.google_analytics %}
+    {% include google-analytics.html %}
+  {% endif %}
+</body>
+</html>

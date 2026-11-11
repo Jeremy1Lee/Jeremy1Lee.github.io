@@ -1,10 +1,11 @@
 ---
-layout: default
+layout: warm
 ---
 
-{% include home-header.html %}
+<div class="article-layout{% if page.toc %} has-toc{% endif %}">
+  <a class="article-back" href="{{ '/' | relative_url }}#writing">← All writing</a>
 
-<article class="post">
+<article class="post article-body">
   <h1 class="post-title">{{ page.title }}</h1>
   <div class="post-meta">
     {%- assign date_format = site.date_format | default: "%-d %b %Y" -%}
@@ -27,7 +28,16 @@ layout: default
     {%- endif -%}
   </div>
 
-  {{ content }}
+  {% if page.toc %}
+  <details class="article-toc">
+    <summary>On this page</summary>
+    <nav aria-label="Table of contents">
+      {% include toc.html html=content h_min=2 h_max=5 skipNoIDs=true class="toc" %}
+    </nav>
+  </details>
+  {% endif %}
+
+  <div class="prose">{{ content }}</div>
 
   {% if page.tags %}
     {% include post-tags.html %}
@@ -53,3 +63,5 @@ layout: default
   </ul>
 </aside>
 {% endif %}
+
+</div>
