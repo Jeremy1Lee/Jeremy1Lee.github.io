@@ -29,11 +29,18 @@ layout: warm
   </div>
 
   {% if page.toc %}
-  <details class="article-toc">
+  {% capture article_toc %}
+  <nav aria-label="Table of contents">
+    {% include toc.html html=content h_min=2 h_max=5 skipNoIDs=true class="toc" %}
+  </nav>
+  {% endcapture %}
+  <aside class="article-toc article-toc-sidebar" aria-labelledby="article-toc-title">
+    <h2 id="article-toc-title">On this page</h2>
+    {{ article_toc }}
+  </aside>
+  <details class="article-toc article-toc-inline">
     <summary>On this page</summary>
-    <nav aria-label="Table of contents">
-      {% include toc.html html=content h_min=2 h_max=5 skipNoIDs=true class="toc" %}
-    </nav>
+    {{ article_toc }}
   </details>
   {% endif %}
 

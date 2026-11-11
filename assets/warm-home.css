@@ -39,3 +39,21 @@
 .prose .align-center{text-align:center}
 .prose img.align-center{display:block;margin-inline:auto}
 .prose hr{border:0;border-top:1px solid var(--line);margin-block:2em}
+
+.article-toc-sidebar{display:none}
+@media(min-width:1080px){
+  .article-layout.has-toc{width:100%}
+  .has-toc .article-body{display:grid;grid-template-columns:minmax(0,760px) minmax(0,1fr);column-gap:32px}
+  .has-toc .article-body>*{grid-column:1;min-width:0}
+  .has-toc .article-toc-inline{display:none}
+  .has-toc .article-toc-sidebar{
+    display:block;grid-column:2;grid-row:3 / span 3;
+    position:sticky;top:24px;align-self:start;
+    max-height:calc(100vh - 48px);overflow:auto;margin:0;
+    padding:14px 16px;font-size:.9rem;overflow-wrap:anywhere
+  }
+  .article-toc-sidebar h2{font-size:1rem;margin:0;color:var(--accent)}
+  .article-toc-sidebar ul{padding-inline-start:1em;line-height:1.5}
+  .article-toc-sidebar li{margin-block:.35em}
+  .has-toc .related{max-width:760px}
+}
