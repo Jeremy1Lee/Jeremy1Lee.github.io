@@ -1,0 +1,26 @@
+name: Verify warm site
+on: push
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/jekyll-build-pages@v1
+      - name: Check generated layouts and links
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          root = Path('_site')
+          pages = list(root.rglob('*.html'))
+          assert pages, 'No HTML generated'
+          for route in ('index.html', 'about/index.html', 'network/index.html', 'dates/index.html', 'tags/index.html', '404.html'):
+              html = (root / route).read_text()
+              assert '/assets/warm-home.css' in html, route
+              assert 'Main navigation' in html, route
+          articles = [page for page in pages if 'class="post article-body"' in page.read_text()]
+          assert articles, 'No blog articles generated'
+          assert (root / 'assets/warm-home.css').is_file()
+          print(f'Generated {len(pages)} HTML pages, including {len(articles)} blog articles')
+          PY
